@@ -1,9 +1,12 @@
 import React from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function Room() {
-    const { roomid } = useParams();
+    const { id } = useParams();
     return (
-        <div>{roomid}</div>
+        <div>
+            {id}
+            <div role="listbox" tabIndex={-1} className="ng-tns-c86-6 ng-trigger ng-trigger-transformPanel mat-select-panel mat-primary" id="mat-select-2-panel" aria-multiselectable="false" aria-labelledby="mat-form-field-label-3" style={{ transformOrigin: '50% 29px 0px', fontSize: '14px', opacity: 1, minWidth: 'calc(100% + 32px)', transform: 'scaleY(1)' }}><mat-option _ngcontent-d2c-frontend-c97 role="option" className="mat-option mat-focus-indicator mat-active ng-tns-c86-6 mat-selected" id="mat-option-7" tabIndex={0} aria-disabled="false" aria-selected="true">{/**/}<span className="mat-option-text"> Male </span>{/**/}<div mat-ripple className="mat-ripple mat-option-ripple" /></mat-option><mat-option _ngcontent-d2c-frontend-c97 role="option" className="mat-option mat-focus-indicator ng-tns-c86-6" id="mat-option-8" tabIndex={0} aria-disabled="false">{/**/}<span className="mat-option-text"> Female </span>{/**/}<div mat-ripple className="mat-ripple mat-option-ripple" /></mat-option><mat-option _ngcontent-d2c-frontend-c97 role="option" className="mat-option mat-focus-indicator ng-tns-c86-6" id="mat-option-9" tabIndex={0} aria-disabled="false">{/**/}<span className="mat-option-text"> Transgender </span>{/**/}<div mat-ripple className="mat-ripple mat-option-ripple" /></mat-option><mat-option _ngcontent-d2c-frontend-c97 role="option" className="mat-option mat-focus-indicator ng-tns-c86-6" id="mat-option-10" tabIndex={0} aria-disabled="false">{/**/}<span className="mat-option-text"> Intersex </span>{/**/}<div mat-ripple className="mat-ripple mat-option-ripple" /></mat-option><mat-option _ngcontent-d2c-frontend-c97 role="option" className="mat-option mat-focus-indicator ng-tns-c86-6" id="mat-option-11" tabIndex={0} aria-disabled="false">{/**/}<span className="mat-option-text"> Non Binary </span>{/**/}<div mat-ripple className="mat-ripple mat-option-ripple" /></mat-option><mat-option _ngcontent-d2c-frontend-c97 role="option" className="mat-option mat-focus-indicator ng-tns-c86-6" id="mat-option-12" tabIndex={0} aria-disabled="false">{/**/}<span className="mat-option-text"> Prefer not to say </span>{/**/}<div mat-ripple className="mat-ripple mat-option-ripple" /></mat-option><mat-option _ngcontent-d2c-frontend-c97 role="option" className="mat-option mat-focus-indicator ng-tns-c86-6" id="mat-option-13" tabIndex={0} aria-disabled="false">{/**/}<span className="mat-option-text"> Others </span>{/**/}<div mat-ripple className="mat-ripple mat-option-ripple" /></mat-option></div>
+        </div>
     )
 }
