@@ -83,7 +83,7 @@ export default function Dashboard() {
         }
     }
     const userdeatails = async () => {
-        const response = await fetch(`${host}/api/getusermess`, { method: 'POST', headers: { 'Content-Type': 'application/json', "userauthtoken": Cookies.get('userauthtoken'), } });
+        const response = await fetch(`${host}/api/getuser`, { method: 'POST', headers: { 'Content-Type': 'application/json', "userauthtoken": Cookies.get('userauthtoken'), } });
         const json = await response.json();
         if (json.success) {
             setuserimg(json.user.picimg);

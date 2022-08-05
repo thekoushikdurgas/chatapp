@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Loading from "./Loading";
 import Cookies from 'js-cookie';
-import { useParams,Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 const { io } = require("socket.io-client");
 
 export default function Main() {
@@ -65,19 +65,23 @@ export default function Main() {
     if (e.target !== document.getElementsByClassName('mainmenu')[0]) { setmenu(false) }
   }
   const userdeatails = async () => {
-    const response = await fetch(`${host}/api/getusermess`, { method: 'POST', headers: { 'Content-Type': 'application/json', "userauthtoken": id, } });
-    const json = await response.json();
+    let response = await fetch(`${host}/api/getuser`, { method: 'POST', headers: { 'Content-Type': 'application/json', "userauthtoken": id, } });
+    let json = await response.json();
     if (json.success) {
       setuserimg(json.user.picimg);
       setusername(json.user.name);
       setuserusername(json.user.username);
       setuseremail(json.user.email);
       setstatus(json.user.status);
-      setuserchat(json.messagelist);
-      localStorage.setItem("messagelist", JSON.stringify(json.messagelist));
       setcontactactivefacebook('/');
       setcontactactivetwitter('/');
       setcontactactiveinstagram('/');
+    }
+    response = await fetch(`${host}/api/getusermess`, { method: 'POST', headers: { 'Content-Type': 'application/json', "userauthtoken": Cookies.get('useremail'), 'contacttoken': id } });
+    json = await response.json();
+    if (json.success) {
+      setuserchat(json.messagelist);
+      localStorage.setItem("messagelist", JSON.stringify(json.messagelist));
     }
   }
   const joinmessage = (message) => {
@@ -142,7 +146,7 @@ export default function Main() {
               <ul>
                 {userchat.map((t, i) => {
                   return (
-                    <li className={`msg ${t.type} ${useremail !== t.email ? 'sent' : 'replies'}`} key={i}>
+                    <li className={`msg ${t.type}`} key={i}>
                       <div className="bubble">
                         <div className="txt">
                           {/* <span className="name">{t.name}</span> */}
