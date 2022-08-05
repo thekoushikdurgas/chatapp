@@ -98,7 +98,7 @@ export default function Main() {
       socket.emit("joinsingleroom", Cookies.get('useremail'));
       const fetchData = async () => {
         if (Cookies.get('userauthtoken') !== undefined) {
-          await userdeatails();
+          userdeatails();
           setrender(false);
         }
       }
@@ -110,7 +110,6 @@ export default function Main() {
     if (Cookies.get('userauthtoken') === undefined) {
       window.location.assign("http://login.thekoushikdurgas.in/");
     }
-    // elem.scrollTop = elem.scrollHeight + elem.scrollHeight;
   }, [render, socket]);
   return (
     <>
