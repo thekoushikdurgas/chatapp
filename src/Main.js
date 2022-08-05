@@ -111,9 +111,9 @@ export default function Main() {
   return (
     <>
       {!render ? (
-        <div className="overflow-hidden md:w-[90%] md:h-[92vh] w-full h-[100vh]">
+        <div className="overflow-hidden md:w-[90%] w-full">
           <div className={`h-full md:rounded-[1vw] rounded-[0] bg-[#ffffff1a] shadow-[0_20px_50px_#00000026] border border-[#ffffff80] backdrop-blur-[5px]`}>
-            <div className="p-[9px] h-[10%]">
+            <div className="p-[9px]">
               <div className="flex items-center justify-between">
                 <div className='flex items-center gap-2'>
                   <div className={`w-[40px] h-[40px] rounded-full cursor-pointer border ${status === 'online' ? 'border-[#2ecc71]' : ''} ${status === 'away' ? 'border-[#f1c40f]' : ''} ${status === 'busy' ? 'border-[#e74c3c]' : ''} ${status === 'offline' ? 'border-[#95a5a6]' : ''}`}><div className='w-[40px] overflow-hidden rounded-full'><img src={userimg} className={`w-full h-full scale-110`} alt={username} /></div></div>
@@ -138,7 +138,7 @@ export default function Main() {
                 </div>
               </div>
             </div>
-            <div id='messages' className={`messages border-t border-b border-[#ffffff80] p-[10px] h-[80%] overflow-y-scroll overflow-x-hidden`} style={{ background: `url("//koushikchandrasaha.thekoushikdurgas.in/svg/tkd/Chatbg.svg")` }}>
+            <div id='messages' className={`messages border-t border-b border-[#ffffff80] p-[10px] h-[70vh] overflow-y-scroll overflow-x-hidden`} style={{ background: `url("//koushikchandrasaha.thekoushikdurgas.in/svg/tkd/Chatbg.svg")` }}>
               <ul>
                 {userchat.map((t, i) => {
                   return (
@@ -158,7 +158,7 @@ export default function Main() {
                 })}
               </ul>
             </div>
-            <div className={`flex gap-3 h-[10%] p-[6px_10px]`}>
+            <div className={`flex gap-3 h-[45px] p-[6px_10px]`}>
               <i className="tkd8-cool-emoji m-auto text-[20px]"></i>
               <i className="tkd7-clip-line m-auto text-[20px]"></i>
               <input type="text" placeholder="Write your message..." value={message} className="md:rounded-[1vw] rounded-[10px] h-full px-[9px] w-full bg-[#ffffff1a] shadow-[0_20px_50px_#00000026] border border-[#ffffff80] backdrop-blur-[5px]" onChange={(event) => { setmessage(event.target.value) }} />

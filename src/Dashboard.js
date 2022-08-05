@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Loading from "./Loading";
 import Cookies from 'js-cookie';
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const { io } = require("socket.io-client");
 
 export default function Dashboard() {
@@ -15,7 +15,7 @@ export default function Dashboard() {
     const [userimg, setuserimg] = useState('');
     const [username, setusername] = useState('');
     const [userusername, setuserusername] = useState('');
-    const [useremail, setuseremail] = useState('');
+    // const [useremail, setuseremail] = useState('');
     const [status, setstatus] = useState('online');
     const [menu, setmenu] = useState(false);
     const [leftside, setleftside] = useState(0);
@@ -89,7 +89,6 @@ export default function Dashboard() {
             setuserimg(json.user.picimg);
             setusername(json.user.name);
             setuserusername(json.user.username);
-            setuseremail(json.user.email);
         }
     }
     useEffect(() => {
@@ -117,8 +116,8 @@ export default function Dashboard() {
     return (
         <>
             {users.length !== 0 ? (
-                <div className="overflow-hidden md:w-[90%] md:h-[92vh] w-full h-[100vh]">
-                    <div className="h-full w-full md:rounded-[1vw] rounded-[0] bg-[#ffffff1a] shadow-[0_20px_50px_#00000026] border border-[#ffffff80] backdrop-blur-[5px]">
+                <div className="overflow-hidden md:w-[90%] w-full">
+                    <div className="h-full flex flex-col w-full md:rounded-[1vw] rounded-[0] bg-[#ffffff1a] shadow-[0_20px_50px_#00000026] border border-[#ffffff80] backdrop-blur-[5px]">
                         <div className="p-[9px]">
                             <div className="flex items-center justify-between">
                                 <div className='flex items-center gap-2'>
@@ -150,13 +149,17 @@ export default function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <div className={`w-full h-full ${leftside === 0 ? 'flex' : 'hidden'}`}>
+                        <div className={`flex bottom-bar w-full border-t border-[#ffffff80] ${leftside === 3 || leftside === 4 ? 'hidden' : ''}`}>
+                            <button className="addcontact py-[10px] w-1/2 border-[0] hover:text-tkd2 flex items-center gap-2 justify-center" onClick={() => { setleftside(3) }}><i className="tkd4-iconmonstr-user-10 text-[19px]"></i> <span>Add Contact</span></button>
+                            <button className="addcontact w-1/2 border-[0] hover:text-tkd2 flex items-center gap-2 justify-center border-l border-[#ffffff80]" onClick={() => { setleftside(4) }}><i className="tkd4-iconmonstr-user-25 text-[19px]"></i> <span>Add Room</span></button>
+                        </div>
+                        <div className={`w-full h-[80vh] ${leftside === 0 ? 'flex' : 'hidden'}`}>
                             <div className='w-1/2 border-l'>
-                                <div className={`border-t border-b border-[#ffffff80]`}>
-                                    <label htmlFor="search" className='absolute w-[44px] h-[44px] flex items-center justify-center'><i className="tkd2-search2"></i></label>
-                                    <input type="text" placeholder="Search contacts..." name='search' className='p-[10px_0_10px_46px] w-full border-[none] bg-[#ffffff1a] focus:outline-[none] placeholder:text-textcolor' />
+                                <div className={`border-t border-b border-[#ffffff80] flex`}>
+                                    <label htmlFor="search" className='w-[44px] items-center justify-center bg-[#ffffff1a]  hidden md:flex'><i className="tkd2-search2"></i></label>
+                                    <input type="text" placeholder="Search contacts..." name='search' className='p-[10px] md:p-[10px_0] w-full border-[none] bg-[#ffffff1a] focus:outline-[none] placeholder:text-textcolor' />
                                 </div>
-                                <div className='p-[10px] h-[416px] overflow-x-scroll overflow-y-hidden' style={{ background: `url("//koushikchandrasaha.thekoushikdurgas.in/svg/tkd/Chatbg.svg")` }}>
+                                <div className='p-[10px] h-full overflow-x-scroll overflow-y-hidden' style={{ background: `url("//koushikchandrasaha.thekoushikdurgas.in/svg/tkd/Chatbg.svg")` }}>
                                     <ul className='flex flex-wrap'>
                                         {contacts.map((t, i) => {
                                             return (
@@ -174,12 +177,12 @@ export default function Dashboard() {
                                     </ul>
                                 </div>
                             </div>
-                            <div className='w-1/2 border-l'>
-                                <div className={`border-t border-b border-[#ffffff80]`}>
-                                    <label htmlFor="search" className='absolute w-[44px] h-[44px] flex items-center justify-center'><i className="tkd2-search2"></i></label>
-                                    <input type="text" placeholder="Search rooms..." name='search' className='p-[10px_0_10px_46px] w-full border-[none] bg-[#ffffff1a] focus:outline-[none] placeholder:text-textcolor' />
+                            <div className='w-1/2 border-l border-[#ffffff80]'>
+                                <div className={`border-t border-b border-[#ffffff80] flex`}>
+                                    <label htmlFor="search" className='w-[44px] items-center justify-center bg-[#ffffff1a]  hidden md:flex'><i className="tkd2-search2"></i></label>
+                                    <input type="text" placeholder="Search rooms..." name='search' className='p-[10px] md:p-[10px_0] w-full border-[none] bg-[#ffffff1a] focus:outline-[none] placeholder:text-textcolor' />
                                 </div>
-                                <div className='p-[10px] h-[416px] overflow-x-scroll overflow-y-hidden' style={{ background: `url("//koushikchandrasaha.thekoushikdurgas.in/svg/tkd/Chatbg.svg")` }}>
+                                <div className='p-[10px] h-full overflow-x-scroll overflow-y-hidden' style={{ background: `url("//koushikchandrasaha.thekoushikdurgas.in/svg/tkd/Chatbg.svg")` }}>
                                     <ul className='flex flex-wrap'>
                                         {/* {contacts.map((t, i) => {
                                             return (
@@ -198,13 +201,13 @@ export default function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <div className={`${leftside === 3 ? '' : 'hidden'}`}>
+                        <div className={`w-full h-[80vh] ${leftside === 3 ? '' : 'hidden'}`}>
                             <div className='text-[20px] flex items-center border-t border-[#ffffff80]'><i className="tkd2-arrow-narrow-left w-[44px] h-[44px] flex items-center justify-center" onClick={() => { setleftside(0); getcontactlist(); }}></i><i className='tkd4-iconmonstr-user-10 w-[44px] h-[44px] flex items-center justify-center'></i><span>Add contact</span></div>
-                            <div className={`border-t border-b border-[#ffffff80]`}>
-                                <label htmlFor="search" className='absolute w-[44px] h-[44px] flex items-center justify-center'><i className="tkd2-search2"></i></label>
-                                <input type="text" placeholder="Search contacts..." name='search' className='p-[10px_0_10px_46px] w-full border-[none] bg-[#ffffff1a] focus:outline-[none] placeholder:text-textcolor' onChange={(event) => { setuser(searchjson(event.target.value)) }} />
+                            <div className={`border-t border-b border-[#ffffff80] h-[10%] flex`}>
+                                <label htmlFor="search" className='w-[44px] items-center justify-center bg-[#ffffff1a]  hidden md:flex'><i className="tkd2-search2"></i></label>
+                                <input type="text" placeholder="Search contacts..." name='search' className='p-[10px] md:p-[10px_0] w-full border-[none] bg-[#ffffff1a] focus:outline-[none] placeholder:text-textcolor' onChange={(event) => { setuser(searchjson(event.target.value)) }} />
                             </div>
-                            <div className='p-[10px] h-[416px] overflow-x-scroll overflow-y-hidden' style={{ background: `url("//koushikchandrasaha.thekoushikdurgas.in/svg/tkd/Chatbg.svg")` }}>
+                            <div className='p-[10px] h-[80%] overflow-x-scroll overflow-y-hidden' style={{ background: `url("//koushikchandrasaha.thekoushikdurgas.in/svg/tkd/Chatbg.svg")` }}>
                                 <ul className='flex flex-wrap'>
                                     {user.map((t, i) => {
                                         return (
@@ -222,10 +225,6 @@ export default function Dashboard() {
                                     })}
                                 </ul>
                             </div>
-                        </div>
-                        <div className={`flex bottom-bar absolute w-full bottom-0 border-t border-[#ffffff80] ${leftside === 3 || leftside === 4 ? 'hidden' : ''}`}>
-                            <button className="addcontact w-1/2 py-[10px] border-[0] hover:text-tkd2 flex gap-2 justify-center" onClick={() => { setleftside(3) }}><i className="tkd4-iconmonstr-user-10 text-[19px]"></i> <span>Add Contact</span></button>
-                            <button className="addcontact w-1/2 py-[10px] border-[0] border-l border-[#ffffff80] hover:text-tkd2 flex gap-2 justify-center" onClick={() => { setleftside(4) }}><i className="tkd4-iconmonstr-user-25 text-[19px]"></i> <span>Add Room</span></button>
                         </div>
                     </div>
                 </div>
