@@ -2,13 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import Loading from "./Loading";
 import Cookies from 'js-cookie';
+import Messagediv from './component/message';
 import { useParams, Link } from "react-router-dom";
-const { io } = require("socket.io-client");
 
-export default function Main() {
-  // const host = "http://localhost:8000";
-  const host = "https://thekoushikdurgasserver.herokuapp.com";
-  const socket = io(host);
+export default function Main({ host, socket }) {
   const { id } = useParams();
   const [render, setrender] = useState(true);
   const [status, setstatus] = useState('');
@@ -38,22 +35,22 @@ export default function Main() {
     if (message.trim() === '') {
       return false;
     }
-    if (Cookies.get('userauthtoken') !== undefined) {
-      const response = await fetch(`${host}/api/tkdchat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          "userauthtoken": Cookies.get('userauthtoken'),
-          "contacttoken": id,
-          "message": message
-        }
-      });
-      const json = await response.json();
-      if (json['success']) {
-        socket.emit("sendsinglemessage", { message: json.message, contact: useremail, user: Cookies.get('useremail') });
+    // if (Cookies.get('userauthtoken') !== undefined) {
+    const response = await fetch(`${host}/api/tkdchat`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "userauthtoken": Cookies.get('userauthtoken'),
+        "contacttoken": id,
+        "message": message
       }
-      setmessage('');
+    });
+    const json = await response.json();
+    if (json['success']) {
+      socket.emit("sendsinglemessage", { message: json.message, contact: useremail, user: Cookies.get('useremail') });
     }
+    setmessage('');
+    // }
   }
   window.onkeydown = (e) => {
     if (e.which === 13) {
@@ -77,45 +74,39 @@ export default function Main() {
       setcontactactivetwitter('/');
       setcontactactiveinstagram('/');
     }
-    response = await fetch(`${host}/api/getusermess`, { method: 'POST', headers: { 'Content-Type': 'application/json', "userauthtoken": Cookies.get('useremail'), 'contacttoken': id } });
+    response = await fetch(`${host}/api/getusermess`, { method: 'POST', headers: { 'Content-Type': 'application/json', "userauthtoken": Cookies.get('userauthtoken'), 'contacttoken': id } });
     json = await response.json();
     if (json.success) {
       setuserchat(json.messagelist);
+      localStorage.setItem("messagelist", []);
       localStorage.setItem("messagelist", JSON.stringify(json.messagelist));
     }
   }
-  const joinmessage = (message) => {
-    var temp = JSON.parse(localStorage.getItem("messagelist"));
-    temp = [...temp, message];
-    setuserchat(temp);
-    localStorage.setItem("messagelist", JSON.stringify(temp));
-    var elem = document.getElementById('messages');
-    elem.scrollTop = elem.scrollHeight + elem.scrollHeight;
+  const joinmessage = async (message) => {
+    setuserchat([...JSON.parse(localStorage.getItem("messagelist")), message]);
+    localStorage.setItem("messagelist", JSON.stringify([...JSON.parse(localStorage.getItem("messagelist")), message]));
   }
   useEffect(() => {
-    // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWIwYjBmMmY3OGZjN2ZjNGJhNjA1ZCIsImlhdCI6MTY1OTY0NTc1MH0.uINYx1VkZUI-Zlv5P6jFQWmwhWGOBRWD5QBlQ73qdB0');
     if (render) {
-      socket.emit("joinsingleroom", Cookies.get('useremail'));
       const fetchData = async () => {
-        if (Cookies.get('userauthtoken') !== undefined) {
-          userdeatails();
-          setrender(false);
-        }
+        // if (Cookies.get('userauthtoken') !== undefined) {
+        userdeatails();
+        setrender(false);
+        // }
       }
       fetchData();
     }
-    socket.on("receivesinglemessage", (data) => {
-      joinmessage(data.message);
+    socket.on("receivesinglemessage", async (data) => {
+      await joinmessage(data.message);
+      const messageselem = document.getElementById('messages');
+      messageselem.scrollTop = messageselem.scrollHeight + messageselem.scrollHeight;
     });
-    if (Cookies.get('userauthtoken') === undefined) {
-      window.location.assign("http://login.thekoushikdurgas.in/");
-    }
   }, [render, socket]);
   return (
     <>
       {!render ? (
-        <div className="overflow-hidden md:w-[90%] w-full">
-          <div className={`h-full md:rounded-[1vw] rounded-[0] bg-[#ffffff1a] shadow-[0_20px_50px_#00000026] border border-[#ffffff80] backdrop-blur-[5px]`}>
+        <div className="overflow-hidden md:w-[90%] w-full flex items-center justify-center">
+          <div className={`h-auto md:rounded-[1vw] rounded-[0] bg-[#ffffff1a] shadow-[0_20px_50px_#00000026] border border-[#ffffff80] backdrop-blur-[5px]`}>
             <div className="p-[9px]">
               <div className="flex items-center justify-between">
                 <div className='flex items-center gap-2'>
@@ -145,18 +136,7 @@ export default function Main() {
               <ul>
                 {userchat.map((t, i) => {
                   return (
-                    <li className={`msg ${t.type}`} key={i}>
-                      <div className="bubble">
-                        <div className="txt">
-                          {/* <span className="name">{t.name}</span> */}
-                          <span className="timestamp">{t.time}</span>
-                          <i className={t.star ? "tkd6-beveled-star msgstar" : "d-none"}></i>
-                          <i className="fi fi-br-caret-down msgdown"></i>
-                        </div>
-                        <span className="message">{t.message}</span>
-                        <div className="bubble-arrow"></div>
-                      </div>
-                    </li>
+                    <Messagediv t={t} useremail={useremail} key={i} />
                   );
                 })}
               </ul>
