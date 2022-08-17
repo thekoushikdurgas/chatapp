@@ -13,8 +13,8 @@ const { io } = require("socket.io-client");
 
 export default function App() {
   const [render, setrender] = React.useState(true);
-  const host = "http://localhost:8000";
-  // const host = "https://thekoushikdurgasserver.herokuapp.com";
+  // const host = "http://localhost:8000";
+  const host = "https://thekoushikdurgasserver.herokuapp.com";
   const socket = io(host);
   // window.oncontextmenu = function () {
   //   console.log("Right Click Disabled");

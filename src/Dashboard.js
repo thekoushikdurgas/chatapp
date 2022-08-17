@@ -76,7 +76,6 @@ export default function Dashboard({ host, socket }) {
             method: 'post', headers: { 'Content-Type': 'application/json', "userauthtoken": Cookies.get('userauthtoken') }
         });
         const json = await response.json();
-        console.log(json);
         setrooms(json);
     }
     window.onclick = (e) => {
