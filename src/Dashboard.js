@@ -104,8 +104,8 @@ export default function Dashboard({ host, socket }) {
         setstatusoptions(!statusoptions);
     }
     useEffect(() => {
-        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWFjMmMwMWVlZjQwZWQzYzRiNGM5OSIsImlhdCI6MTY1OTY1MTc3MH0.WwipcNZEQ1RbFQGYsAC0nPINYw_q5R9gouQJkTQ5sdo');
-        // Cookies.set('useremail', 'koushikdurgas@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwicm9sZSI6bnVsbCwiZXhwIjoxNjY2MDE0Njk1fQ._KsV3DX8IREngyn0KgcRQNlB9KuX0JkXocRb0Jrldfc');
+        // Cookies.set('useremail', 'company@karmaalab.com');
         // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWIwYjBmMmY3OGZjN2ZjNGJhNjA1ZCIsImlhdCI6MTY1OTY0NTc1MH0.uINYx1VkZUI-Zlv5P6jFQWmwhWGOBRWD5QBlQ73qdB0');
         // Cookies.set('useremail', 'durgas@gmail.com');
         // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWIwYjY5NzlhYzk4YzI2ZDYzOTFiZCIsImlhdCI6MTY1OTcyOTAxMX0.mdxkQyEaUdiQMgWHUXE-JwVjxHLm75-veDeRCg8CHOA');

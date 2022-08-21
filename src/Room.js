@@ -146,6 +146,8 @@ export default function Room({ host, socket }) {
       json = await response.json();
       if (json['success']) {
         socket.emit("send_message", { message: json.message, room: id, contact: json['contactemail'] });
+      }else{
+        console.log(json);
       }
     }
   }
