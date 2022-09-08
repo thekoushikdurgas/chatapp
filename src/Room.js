@@ -107,6 +107,10 @@ export default function Room({ host, socket }) {
       setuserchat(json.room.messagelist);
       localStorage.setItem("messagelist", []);
       localStorage.setItem("messagelist", JSON.stringify(json.room.messagelist));
+      setTimeout(() => {
+        const messageselem = document.getElementById('messages');
+        messageselem.scrollTop = messageselem.scrollHeight + messageselem.scrollHeight;
+      }, 1000);
     }
   }
   const searchjson = (b) => {
@@ -146,7 +150,7 @@ export default function Room({ host, socket }) {
       json = await response.json();
       if (json['success']) {
         socket.emit("send_message", { message: json.message, room: id, contact: json['contactemail'] });
-      }else{
+      } else {
         console.log(json);
       }
     }
@@ -168,10 +172,14 @@ export default function Room({ host, socket }) {
       fetchData();
     }
     socket.on("receive_message", async (data) => {
+      // console.log(data);
       await joinmessage(data.message);
-      console.log(data.message);
-      const messageselem = document.getElementById('messages');
-      messageselem.scrollTop = messageselem.scrollHeight + messageselem.scrollHeight;
+      setTimeout(() => {
+        const messageselem = document.getElementById('messages');
+        if (messageselem !== null) {
+          messageselem.scrollTop = messageselem.scrollHeight + messageselem.scrollHeight;
+        }
+      }, 1000);
     });
   }, [render, socket]);
   return (
@@ -268,7 +276,7 @@ export default function Room({ host, socket }) {
                                 <p className='text-[11px] opacity-50'>{t.username}</p>
                               </div>
                             </div>
-                            <div><i className={`tkd7-add-${t.gender}-user text-[23px]`} onClick={() => { addcontacts(t.authtoken) }}></i></div>
+                            <div><i className={`tkd7-add-${t.gender.toLowerCase()}-user text-[23px]`} onClick={() => { addcontacts(t.authtoken) }}></i></div>
                           </div>
                         </li>
                       );

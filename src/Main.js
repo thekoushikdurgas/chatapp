@@ -10,6 +10,7 @@ export default function Main({ host, socket }) {
   const [render, setrender] = useState(true);
   const [status, setstatus] = useState('');
   const [userchat, setuserchat] = useState([]);
+  // const location = (useLocation().pathname).split('/');
   // const [userchatno, setuserchatno] = useState(0);
   // const [userchatno1, setuserchatno1] = useState(0);
   const [message, setmessage] = useState('');
@@ -80,6 +81,10 @@ export default function Main({ host, socket }) {
       setuserchat(json.messagelist);
       localStorage.setItem("messagelist", []);
       localStorage.setItem("messagelist", JSON.stringify(json.messagelist));
+      setTimeout(() => {
+        const messageselem = document.getElementById('messages');
+        messageselem.scrollTop = messageselem.scrollHeight + messageselem.scrollHeight;
+      }, 1000);
     }
   }
   const joinmessage = async (message) => {
@@ -94,12 +99,18 @@ export default function Main({ host, socket }) {
         setrender(false);
         // }
       }
+
       fetchData();
     }
     socket.on("receivesinglemessage", async (data) => {
+      // console.log(location);
       await joinmessage(data.message);
-      const messageselem = document.getElementById('messages');
-      messageselem.scrollTop = messageselem.scrollHeight + messageselem.scrollHeight;
+      setTimeout(() => {
+        const messageselem = document.getElementById('messages');
+        if (messageselem !== null) {
+          messageselem.scrollTop = messageselem.scrollHeight + messageselem.scrollHeight;
+        } 
+      }, 1000);
     });
   }, [render, socket]);
   return (

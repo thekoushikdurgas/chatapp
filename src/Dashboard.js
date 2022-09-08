@@ -104,12 +104,16 @@ export default function Dashboard({ host, socket }) {
         setstatusoptions(!statusoptions);
     }
     useEffect(() => {
-        // Cookies.set('userauthtoken', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwicm9sZSI6bnVsbCwiZXhwIjoxNjY2MDE0Njk1fQ._KsV3DX8IREngyn0KgcRQNlB9KuX0JkXocRb0Jrldfc');
-        // Cookies.set('useremail', 'company@karmaalab.com');
-        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWIwYjBmMmY3OGZjN2ZjNGJhNjA1ZCIsImlhdCI6MTY1OTY0NTc1MH0.uINYx1VkZUI-Zlv5P6jFQWmwhWGOBRWD5QBlQ73qdB0');
-        // Cookies.set('useremail', 'durgas@gmail.com');
-        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWIwYjY5NzlhYzk4YzI2ZDYzOTFiZCIsImlhdCI6MTY1OTcyOTAxMX0.mdxkQyEaUdiQMgWHUXE-JwVjxHLm75-veDeRCg8CHOA');
-        // Cookies.set('useremail', 'vivek@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0YTYxNzQ4M2JjMTcwMDAxN2I0ZCIsImlhdCI6MTY2MTcxODMxNH0.zkwHndNlGapsTdVnWkkV_MYzWRSnHDluVWSwM7SJWLg'); Cookies.set('useremail', 'tushar@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0YTZjYzUyZDE5ODE3ZGVkMDQzMiIsImlhdCI6MTY2MTcxODMxNH0.VKPkTif2yWQ1nMyVsI5yfiF4OYJb3SI1qNkGt-tS9g0'); Cookies.set('useremail', 'barnali@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0YTA3ZTIwNGZmYTk4NzllY2ZhMyIsImlhdCI6MTY2MTcxODMxNH0.35IHMcIDCawC2GGLgLpQLGVFpT9dwnqz5BnrFHKHwK4'); Cookies.set('useremail', 'dipak@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0YTE2ZDk3YzQ4MTkwNDhlY2M3MSIsImlhdCI6MTY2MTcxODMxNH0.U2GLg80E1rjRZiRCRPgwHKey1Rb4QzGuqcm7dPUERaU'); Cookies.set('useremail', 'vivek@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0YTU0ZWQ1NTE2YjkwNTIwMmI0MCIsImlhdCI6MTY2MTcxODMxNH0.-QqYIDxjS8OV-SOu-DQ-OA69BIR2dWLU2crwlgs3G6A'); Cookies.set('useremail', 'liton@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0YTgzMjdhMmFkOGNlODc0MTExOSIsImlhdCI6MTY2MTcxODMxNH0.6xuLtFEPAm8s9n2br2T2xSfECT2D5GcwdJPo6KdhZ-s'); Cookies.set('useremail', 'uttam@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0OWQyZmY0N2IwNzQ2YjZlYzlkOCIsImlhdCI6MTY2MTcxODMxNH0.Aw7nM6L3NVAdEFQFsJJZOIsmKFArOYISIL_IwpiWijc'); Cookies.set('useremail', 'tkekoushikdurgas@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0YTMyNzFlZDUxOGQ2Njg1NmJiZCIsImlhdCI6MTY2MTcxODMxNH0.HnjAsqk--Qu3-7DlWa_2mNmnPHlsLoWAVGfJKKs4laU'); Cookies.set('useremail', 'aman@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0YmU4NmZjYzhkYzJkMjJhMDVlYiIsImlhdCI6MTY2MTcxODMxNH0.kMO9vdFjHr3pNmcxSLxZsEZFTsLScyiY5KUGzsYrQoI'); Cookies.set('useremail', 'mia@gmail.com');
+        // Cookies.set('userauthtoken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDk0YTI2YmMwYjUyOTgwNmQwOWY4ZiIsImlhdCI6MTY2MTcxODI0Mn0.bQ0ncIYdqqZOOa820phNQZhIOTY_JiPEwch9yjX9dnE'); Cookies.set('useremail', 'durgas@gmail.com');
         if (render) {
             Cookies.set('priviousurl', 'http://chat.thekoushikdurgas.in/', { path: '', domain: '.thekoushikdurgas.in' });
             const fetchData = async () => {
@@ -237,7 +241,7 @@ export default function Dashboard({ host, socket }) {
                                                         <p className='font-semibold'>{t.name}</p>
                                                         <p className='text-[11px] opacity-50'>{t.username}</p>
                                                     </div>
-                                                    <div><i className={`tkd7-add-${t.gender}-user text-[23px]`} onClick={() => { addcontacts(t.authtoken) }}></i></div>
+                                                    <div><i className={`tkd7-add-${t.gender.toLowerCase()}-user text-[23px]`} onClick={() => { addcontacts(t.authtoken) }}></i></div>
                                                 </div>
                                             </li>
                                         );
